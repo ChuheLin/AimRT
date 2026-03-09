@@ -101,7 +101,9 @@ void TimeWheelExecutor::Initialize(std::string_view name,
 
           while (!task_list.empty()) {
             auto itr = task_list.begin();
-            auto& cur_list = timing_wheel_vec_[ii].wheel[itr->tick_count % timing_wheel_vec_[ii].scale];
+            auto& cur_list =
+                timing_wheel_vec_[ii]
+                    .wheel[itr->tick_count % timing_wheel_vec_[ii].wheel.size()];
             cur_list.splice(cur_list.end(), task_list, itr);
           }
         }});
